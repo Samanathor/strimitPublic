@@ -6,7 +6,7 @@ import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const Auth = () => {
   return (
-    <div className="flex flex-row">
+    <div id="Auth" className="flex flex-row">
       <div className="w-1/2 bg-purple-900 h-screen">
         <img src={Logo} alt="logo-strimit" className="mx-auto mt-20" />
         <p className="w-1/2 text-center mx-auto mt-10 text-white">
@@ -14,6 +14,7 @@ const Auth = () => {
           archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
           las industrias desde el año 1500,
         </p>
+        <button className="boton2-custom">Sebastian</button>
       </div>
       <div className="w-1/2">
         <div className="w-1/2 mx-auto mt-20 pt-5">
