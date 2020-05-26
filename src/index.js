@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./tailwind.generated.css";
 import App from "./App/App";
-import Login from "./Auth/Login/Login";
+import Login from "./Auth/Login";
 
 ReactDOM.render(
   <React.StrictMode>
