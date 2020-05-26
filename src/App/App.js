@@ -1,5 +1,4 @@
 import React from "react";
-import "./tailwind.generated.css";
 import "./main.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import Auth from "../Auth";

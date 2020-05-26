@@ -1,3 +1,9 @@
+@import "./tailwind.generated.css";
+
 body {
   font-family: "Ubuntu", sans-serif !important;
+}
+
+input {
+  @apply bg-black-700;
 }
