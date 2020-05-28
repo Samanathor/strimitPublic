@@ -1,21 +1,17 @@
-import React from "react";
+import React from "react"
 import { Link } from "react-router-dom";
-import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import Button from "../common/components/Button";
 import Input from "../common/components/Input";
 import styles from "./styles";
+import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
-const Login = (onSubmit) => {
-  return (
-    <div className="w-1/2 mx-auto mt-20 pt-5">
-      <form onSubmit={() => onSubmit}>
-        <h3 className={styles.title}>Iniciar Sesión</h3>
+
+const Forget = ({onSubmit}) => {
+  return <div className={"w-1/2 mx-auto mt-20 pt-5"}>
+    <form onSubmit={() => onSubmit}>
+        <h3 className={styles.title}>Olvide mi contraseña</h3>
         <Input type="text" placeholder="Ingresa tu correo electrónico" />
-        <Input type="text" placeholder="Ingresa tu contraseña" />
-        <div className="text-center mt-4 mb-4">
-          <Link className="text-gray-600">Olvide mi contraseña</Link>
-        </div>
-        <Button text="Iniciar Sesión" color="pink" />
+        <Button className="my-5" text="Enviar correo de recuperación" color="pink" />
       </form>
       <div className="flex items-center my-6">
         <div class="border flex-auto h-0" />
@@ -37,8 +33,8 @@ const Login = (onSubmit) => {
         Al registrarte aceptas nuestros{" "}
         <Link>Términos y políticas de privacidad.</Link>
       </p>
-    </div>
-  );
-};
 
-export default Login;
+  </div>
+}
+
+export default Forget
