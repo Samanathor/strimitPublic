@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom";
-import Button from "../common/components/Button";
-import Input from "../common/components/Input";
+import {Input, Button} from "Components"
 import styles from "./styles";
 import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
