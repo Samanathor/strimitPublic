@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../common/assets/logo_strimit.png";
-import Login from "./Login";
+import Login from "./LoginContainer";
 import Register from "./Register";
 import Forget from "./Forget";
 
@@ -16,7 +16,7 @@ const Auth = () => {
         </p>
       </div>
       <div className="w-1/2">
-        <Register />
+        <Login />
       </div>
     </div>
   );

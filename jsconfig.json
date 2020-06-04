@@ -5,11 +5,23 @@
       "public/*": [
         "./public/*"
       ],
+      "Config": [
+        "Config"
+      ],
+      "Config/*": [
+        "Config/*"
+      ],
       "Components": [
         "common/components"
       ],
       "Components/*": [
         "common/components/*"
+      ],
+      "Auth": [
+        "Auth"
+      ],
+      "Auth/*": [
+        "Auth/*"
       ]
     }
   },

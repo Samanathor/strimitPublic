@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import {Input, Button} from "Components"
 import styles from "./styles";
+import PropTypes from "prop-types";
+const LoginScreen = (props) => {
 
-const Login = (onSubmit) => {
-  return (
+    const {onSubmit,loginInfo,onFacebookLogin} = props
+    const {provider} = loginInfo
+    return (
     <div className="w-1/2 mx-auto mt-20 pt-5">
-      <form onSubmit={() => onSubmit}>
+      <form onSubmit={() => onSubmit()}>
         <h3 className={styles.title}>Iniciar Sesión</h3>
+        <h3 className={styles.title}>Current Provider: {provider}</h3>
         <Input type="text" placeholder="Ingresa tu correo electrónico" />
         <Input type="text" placeholder="Ingresa tu contraseña" />
         <div className="text-center mt-4 mb-4">
@@ -26,6 +30,9 @@ const Login = (onSubmit) => {
         color="facebook"
         icon={faFacebookSquare}
         className="mb-4"
+        onClick={()=>{
+            onFacebookLogin()
+        }}
       />
       <Button text="Iniciar sesión con Google" color="google" icon={faGoogle} />
       <p className="text-gray-600 my-2 text-center">¿No tienes cuenta?</p>
@@ -40,4 +47,16 @@ const Login = (onSubmit) => {
   );
 };
 
-export default Login;
+LoginScreen.defaultProps={
+  loginInfo: {},
+  onFacebookLogin: ()=>{},
+  onSubmit: ()=>{},
+}
+LoginScreen.propTypes={
+  loginInfo: PropTypes.object,
+  onFacebookLogin: PropTypes.func,
+  onSubmit: PropTypes.func
+}
+
+
+export default LoginScreen;
