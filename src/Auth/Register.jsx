@@ -1,8 +1,10 @@
 import React from "react"
-import Input from "../common/components/Input"
-import Button from "../common/components/Button"
+
+import {Input, Button} from "Components"
+
 import {Link} from "react-router-dom"
 import styles from "./styles"
+
 import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const Register = ({onSubmit})=> {
@@ -13,7 +15,7 @@ const Register = ({onSubmit})=> {
         <Input type="email" placeholder="Ingresa tu correo electrónico" />
         <Input type="password" placeholder="Ingresa tu contraseña" />
         <Input type="password" placeholder="Confirma tu contraseña" />
-       
+
         <Button className="mt-5" text="Registrarme" color="pink" />
     </form>
     <div className="flex items-center my-6">

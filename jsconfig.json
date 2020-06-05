@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "public/*": [
+        "./public/*"
+      ],
+      "Components": [
+        "common/components"
+      ],
+      "Components/*": [
+        "common/components/*"
+      ]
+    }
+  },
+  "include": ["src"]
+}
