@@ -6,7 +6,7 @@ import styles from "./styles"
 import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const Register = ({onSubmit})=> {
-  return <div className="w-1/2 mx-auto mt-10 pt-0">
+  return <div className="mt-20 w-4/5 md:w-1/2 mx-auto md:mt-12 pt-0">
     <form onSubmit={() => onSubmit}>
     <h3 className={styles.title}>Regístrate</h3>
         <Input type="text" placeholder="Ingresa tu nombre y apellido" />
@@ -30,7 +30,7 @@ const Register = ({onSubmit})=> {
       <Button text="Iniciar sesión con Google" color="google" icon={faGoogle} />
       <p className="text-gray-600 my-2 text-center">¿Ya tienes cuenta?</p>
       <div className="text-center">
-        <Link className="text-pink-500">Inicia sesión</Link>
+        <Link to="/login" className="text-pink-500">Inicia sesión</Link>
       </div>
       <p className="text-center text-xs my-4 text-gray-500">
         Al registrarte aceptas nuestros{" "}

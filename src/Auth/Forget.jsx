@@ -7,7 +7,7 @@ import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 
 const Forget = ({onSubmit}) => {
-  return <div className={"w-1/2 mx-auto mt-20 pt-5"}>
+  return <div className={"w-4/5 md:w-1/2 mx-auto mt-20 pt-5"}>
     <form onSubmit={() => onSubmit}>
         <h3 className={styles.title}>Olvide mi contraseña</h3>
         <Input type="text" placeholder="Ingresa tu correo electrónico" />
@@ -27,7 +27,7 @@ const Forget = ({onSubmit}) => {
       <Button text="Iniciar sesión con Google" color="google" icon={faGoogle} />
       <p className="text-gray-600 my-2 text-center">¿No tienes cuenta?</p>
       <div className="text-center">
-        <Link className="text-pink-500">Regístrate</Link>
+        <Link to="registrar" className="text-pink-500">Regístrate</Link>
       </div>
       <p className="text-center text-xs my-4 text-gray-500">
         Al registrarte aceptas nuestros{" "}

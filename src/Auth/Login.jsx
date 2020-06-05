@@ -7,13 +7,13 @@ import styles from "./styles";
 
 const Login = (onSubmit) => {
   return (
-    <div className="w-1/2 mx-auto mt-20 pt-5">
+    <div className="w-4/5 md:w-1/2 mx-auto mt-20 pt-5">
       <form onSubmit={() => onSubmit}>
         <h3 className={styles.title}>Iniciar Sesión</h3>
         <Input type="text" placeholder="Ingresa tu correo electrónico" />
         <Input type="text" placeholder="Ingresa tu contraseña" />
         <div className="text-center mt-4 mb-4">
-          <Link className="text-gray-600">Olvide mi contraseña</Link>
+          <Link to="olvide-contrasena" className="text-gray-600">Olvide mi contraseña</Link>
         </div>
         <Button text="Iniciar Sesión" color="pink" />
       </form>
@@ -31,7 +31,7 @@ const Login = (onSubmit) => {
       <Button text="Iniciar sesión con Google" color="google" icon={faGoogle} />
       <p className="text-gray-600 my-2 text-center">¿No tienes cuenta?</p>
       <div className="text-center">
-        <Link className="text-pink-500">Regístrate</Link>
+        <Link to="registrar" className="text-pink-500">Regístrate</Link>
       </div>
       <p className="text-center text-xs my-4 text-gray-500">
         Al registrarte aceptas nuestros{" "}

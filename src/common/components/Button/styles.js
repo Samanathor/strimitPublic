@@ -1,5 +1,5 @@
 export const type = {
-  base: "text-center py-4 px-6 rounded-full w-full",
+  base: "text-center py-4 px-6 rounded-full w-full cursor-pointer",
 };
 
 export const colors = {
