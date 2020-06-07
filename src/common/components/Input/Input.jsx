@@ -1,15 +1,26 @@
 import React from "react";
 import inputStyles from "./InputStyles";
 
-const Input = ({ type, placeholder, onChange, value, onBlur }) => {
+const Input = ({
+  type,
+  placeholder,
+  onChange,
+  value,
+  onBlur,
+  propRef,
+  name,
+  border,
+}) => {
   return (
     <input
-      className={`${inputStyles.base}`}
+      name={name}
+      ref={propRef}
+      className={`${inputStyles.base} ${inputStyles.border[border]}`}
       placeholder={placeholder}
       type={type}
-      onChange={() => onChange}
+      onChange={onChange}
       value={value}
-      onBlur={() => onBlur}
+      onBlur={onBlur}
     />
   );
 };

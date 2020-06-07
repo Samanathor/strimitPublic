@@ -1,3 +1,3 @@
-const createAPI = () => ({})
+const createAPI = () => ({});
 
 export default createAPI;

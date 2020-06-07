@@ -1,8 +1,8 @@
 import React from "react";
 import Logo from "../common/assets/logo_strimit.png";
-import Login from "./LoginContainer";
-import Register from "./Register";
-import Forget from "./Forget";
+import Login from "./Login/LoginContainer";
+import Register from "./Register/RegisterContainer";
+import Forget from "./Forget/ForgetContainer";
 import { Switch, Route } from "react-router-dom";
 
 const Auth = () => {
