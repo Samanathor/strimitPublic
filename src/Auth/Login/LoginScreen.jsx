@@ -8,13 +8,13 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import FacebookLogin from "react-facebook-login";
 const LoginScreen = (props) => {
-  const { onSubmit, loginInfo, onFacebookLogin } = props;
+  const { onSubmitLogin, loginInfo, onFacebookLogin } = props;
   const { register, handleSubmit, errors } = useForm();
-  const log = () => console.log("formSubmited");
+
 
   return (
     <div className="w-1/2 mx-auto mt-20 pt-5">
-      <form onSubmit={handleSubmit(log)}>
+      <form onSubmit={handleSubmit(onSubmitLogin)}>
         <h3 className={styles.title}>Iniciar Sesión</h3>
 
         <Input

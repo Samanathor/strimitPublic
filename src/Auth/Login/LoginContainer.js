@@ -20,8 +20,10 @@ const Login = (props) => {
   const mapDispatch = {
     onFacebookLogin: () => dispatch(facebookLogin()),
     onResetState: () => dispatch(resetState()),
-    onSubmit: () => {
-      console.log("something");
+    onSubmitLogin: (data) => {
+      console.log("Login Data")
+      console.log(data)
+      dispatch(login({...data}))
     },
     onLogOut: () => dispatch(logOut()),
   };

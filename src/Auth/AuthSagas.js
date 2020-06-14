@@ -10,8 +10,9 @@ export function* facebookLoginSaga(api) {
 
 export function* loginSaga(api, { payload }) {
   console.log("login normal");
+  console.log(payload);
   //   const response = yield api.sendLogin({ payload });
-  yield put(AuthActions.logIn({}));
+
 }
 
 export function* forgetPasswordSaga(api, { payload }) {
