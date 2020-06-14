@@ -3,9 +3,10 @@ import { all, put, takeLatest } from "redux-saga/effects";
 
 import { AuthActions, AuthTypes } from "./AuthActions";
 
-export function* facebookLoginSaga(api) {
+export function* facebookLoginSaga(api, { payload }) {
   console.log("Facebook Login Saga Ejecutada - Provider Updatedd");
-  yield put(AuthActions.saveLoginInfo({ provider: "facebook" }));
+  const response = api.facebookLogin(payload)
+  // yield put(AuthActions.saveLoginInfo({ provider: "facebook" }));
 }
 
 export function* loginSaga(api, { payload }) {
