@@ -23,7 +23,24 @@ const Login = (props) => {
     onSubmitLogin: (data) => {
       console.log("Login Data")
       console.log(data)
-      dispatch(login({...data}))
+      // dispatch(login({...data}))
+
+
+      const facebookMockData = {
+        "email": "haavendanov@unal.edu.co",
+        "data_access_expiration_time": 1599167994,
+        "accessToken": "EAAFaaxSN2ZCQBAOp7qlC9wC7ZC3gZB9vFSKa3Px40er88hSnnBWrtCSmZCXHl1ATwfRwUK3WjuHyNphfSaIwZAeKPBXdGkvQ9JoU7W0EpRDPm4xZC8U5gTJYlNJ9r46eaLGnBTmbEHRU46YWO1ZBDEGvVQVFuEZBkQJU0laPqrEZBdrZBiUB2iRM2PYBEUeuGzmOZC5PZBoaW5VozwZDZD",
+        "name": "Helmer Avendaño",
+        "picture": {
+          "data": {
+            "url": "test"
+          }
+        },
+        "userID": "123123123"
+      }
+
+      dispatch(facebookLogin(facebookMockData))
+
     },
     onLogOut: () => dispatch(logOut()),
   };
