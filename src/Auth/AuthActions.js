@@ -3,7 +3,7 @@ import { createActions } from "reduxsauce";
 const { Types, Creators } = createActions(
   {
     facebookLogin: ["payload"],
-    login: ["payload"],
+    loginForm: ["payload"],
     resetState: [""],
     saveLoginInfo: ["payload"],
     logOut: [""],

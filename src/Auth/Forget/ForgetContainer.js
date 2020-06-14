@@ -8,6 +8,9 @@ const Forget = () => {
   const dispatch = useDispatch();
 
   const mapDispatch = {
+    onFacebookLogin: () => console.log(),
+    onGoogleLogin: () => console.log(),
+    onGoogleFail: () => console.log(),
     onForgetSubmit: (payload) => dispatch(forgetPassword(payload)),
   };
 

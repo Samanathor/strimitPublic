@@ -6,8 +6,8 @@ import { AuthTypes as Types } from "./AuthActions";
 /* ------------- Initial State ------------ - */
 export const INITIAL_STATE = Map({
   loginInfo: {
-    email: "a@a.com",
-    provider: "none",
+    email: "",
+    name: "",
     loggedIn: false,
   },
 });

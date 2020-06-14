@@ -5,7 +5,13 @@ import { AuthActions } from "../AuthActions";
 import LoginScreen from "./LoginScreen";
 
 // Aqui coloco las acciones de AuthActions
-const { facebookLogin, resetState, login, logOut } = AuthActions;
+const {
+  googleLogin,
+  facebookLogin,
+  resetState,
+  loginForm,
+  logOut,
+} = AuthActions;
 
 // Este es el componente como tal condensado con lo que se necesita
 const Login = (props) => {
@@ -18,11 +24,11 @@ const Login = (props) => {
   //   ToJS es inmutable asi hace que no se dañe
 
   const mapDispatch = {
-    onFacebookLogin: () => dispatch(facebookLogin()),
+    onFacebookLogin: (values) => dispatch(facebookLogin(values)),
+    onLoginForm: (values) => dispatch(loginForm(values)),
+    onGoogleLogin: (values) => dispatch(googleLogin(values)),
+    onGoogleFail: (response) => console.log(response),
     onResetState: () => dispatch(resetState()),
-    onSubmit: () => {
-      console.log("something");
-    },
     onLogOut: () => dispatch(logOut()),
   };
 

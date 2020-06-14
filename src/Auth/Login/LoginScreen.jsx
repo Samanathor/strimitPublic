@@ -7,14 +7,15 @@ import styles from "../Authstyles";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import FacebookLogin from "react-facebook-login";
+import GoogleLogin from "react-google-login"
 const LoginScreen = (props) => {
-  const { onSubmit, loginInfo, onFacebookLogin } = props;
+  const { onLoginForm, onFacebookLogin, onGoogleLogin, onGoogleFail } = props;
   const { register, handleSubmit, errors } = useForm();
-  const log = () => console.log("formSubmited");
+  const onSubmit = values => onLoginForm(values);
 
   return (
     <div className="w-1/2 mx-auto mt-20 pt-5">
-      <form onSubmit={handleSubmit(log)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <h3 className={styles.title}>Iniciar Sesión</h3>
 
         <Input
@@ -70,11 +71,21 @@ const LoginScreen = (props) => {
         cssClass="text-center py-4 px-6 rounded-full w-full cursor-pointer bg-blue-700 hover:bg-blue-800 text-white mb-4"
       />
 
-      <Button
+    <GoogleLogin
+        clientId="512367997945-djogbjcdq7q92orcj333ps9185hfvcq5.apps.googleusercontent.com" 
+        buttonText="LOGIN WITH GOOGLE"
+        onSuccess={onGoogleLogin}
+        onFailure={onGoogleFail}
+        disabledStyle={true}
+        render={renderProps => (
+          <Button
         btnType="button"
         text="Iniciar sesión con Google"
         color="google"
         icon={faGoogle}
+        onClick={renderProps.onClick}
+          />
+        )}
       />
       <p className="text-gray-600 my-2 text-center">¿No tienes cuenta?</p>
       <div className="text-center">
