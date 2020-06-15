@@ -5,7 +5,8 @@ import { AuthActions, AuthTypes } from "./AuthActions";
 
 export function* facebookLoginSaga(api, { payload }) {
   console.log("Facebook Login Saga Ejecutada - Provider Updatedd");
-  const response = api.facebookLogin(payload);
+  // ! Cuidado con el yield para las promesas
+  const response = yield api.facebookLogin(payload);
   // yield put(AuthActions.saveLoginInfo({ provider: "facebook" }));
 }
 
@@ -31,8 +32,8 @@ export function* logOutSaga(api) {
 }
 
 function* ActionWatcher(api) {
+  // yield takeLatest(AuthTypes.GOOGLE_LOGIN, googleLoginSaga, api);
   yield takeLatest(AuthTypes.FACEBOOK_LOGIN, facebookLoginSaga, api);
-  yield takeLatest(AuthTypes.GOOGLE_LOGIN, googleLoginSaga, api);
   yield takeLatest(AuthTypes.LOGIN_FORM, loginSaga, api);
   yield takeLatest(AuthTypes.LOG_OUT, logOutSaga, api);
   yield takeLatest(AuthTypes.FORGET_PASSWORD, forgetPasswordSaga, api);
