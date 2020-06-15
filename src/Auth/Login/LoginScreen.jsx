@@ -9,16 +9,12 @@ import { useForm } from "react-hook-form";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login"
 const LoginScreen = (props) => {
-  const { onSubmitLogin, loginInfo, onFacebookLogin, onGoogleLogin, onGoogleFail } = props;
+  const { onSubmitLogin, onFacebookLogin, onGoogleLogin, onGoogleFail } = props;
   const { register, handleSubmit, errors } = useForm();
-
-
-
   return (
     <div className="w-1/2 mx-auto mt-20 pt-5">
       <form onSubmit={handleSubmit(onSubmitLogin)}>
         <h3 className={styles.title}>Iniciar Sesión</h3>
-
         <Input
           propRef={register({
             required: true,

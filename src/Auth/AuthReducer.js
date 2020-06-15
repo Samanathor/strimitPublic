@@ -8,18 +8,26 @@ export const INITIAL_STATE = Map({
   loginInfo: {
     email: "",
     name: "",
+    picture: null,
     loggedIn: false,
   },
 });
 
 const resetState = () => INITIAL_STATE;
 
-const saveLoginInfo = (state, { payload }) =>
-  state.merge(Map({ loginInfo: { ...state.get("loginInfo"), ...payload } }));
-const logOut = (state) =>
-  state.merge(
-    Map({ loginInfo: { email: null, provider: "none", loggedIn: false } })
+const saveLoginInfo = (state, { payload }) => {
+  localStorage.setItem("token", payload.token);
+  return state.merge(
+    Map({ loginInfo: { ...state.get("loginInfo"), ...payload } })
   );
+};
+
+const logOut = (state) => {
+  state.merge(
+    Map({ loginInfo: { email: "", name: "", picture: null, loggedIn: false } })
+  );
+  localStorage.removeItem("token");
+};
 
 /* ------------- Hookup Reducers To Types ------------- */
 export const reducer = createReducer(INITIAL_STATE, {

@@ -5,14 +5,7 @@ import { AuthActions } from "../AuthActions";
 import LoginScreen from "./LoginScreen";
 
 // Aqui coloco las acciones de AuthActions
-const {
-  googleLogin,
-  facebookLogin,
-  resetState,
-  loginForm,
-  logOut,
-} = AuthActions;
-
+const { googleLogin, facebookLogin, loginForm, logOut } = AuthActions;
 // Este es el componente como tal condensado con lo que se necesita
 const Login = (props) => {
   //   Esto es mapDispatchToProps usa el hook
@@ -22,43 +15,19 @@ const Login = (props) => {
     ...useSelector((state) => state.auth.toJS()),
   };
   //   ToJS es inmutable asi hace que no se dañe
-
   const mapDispatch = {
-    onFacebookLogin: (values) => console.log(values),
+    onFacebookLogin: (values) => dispatch(facebookLogin(values)),
     onLoginForm: (values) => dispatch(loginForm(values)),
     onGoogleLogin: (values) => dispatch(googleLogin(values)),
     onGoogleFail: (response) => console.log(response),
-    onResetState: () => dispatch(resetState()),
-    onSubmitLogin: (data) => {
-      console.log("Login Data");
-      console.log(data);
-      // dispatch(login({...data}))
-
-      const facebookMockData = {
-        email: "haavendanov@unal.edu.co",
-        data_access_expiration_time: 1599167994,
-        accessToken:
-          "EAAFaaxSN2ZCQBAOp7qlC9wC7ZC3gZB9vFSKa3Px40er88hSnnBWrtCSmZCXHl1ATwfRwUK3WjuHyNphfSaIwZAeKPBXdGkvQ9JoU7W0EpRDPm4xZC8U5gTJYlNJ9r46eaLGnBTmbEHRU46YWO1ZBDEGvVQVFuEZBkQJU0laPqrEZBdrZBiUB2iRM2PYBEUeuGzmOZC5PZBoaW5VozwZDZD",
-        name: "Helmer Avendaño",
-        picture: {
-          data: {
-            url: "test",
-          },
-        },
-        userID: "123123123",
-      };
-
-      dispatch(facebookLogin(facebookMockData));
-    },
+    onSubmitLogin: (data) => dispatch(loginForm({ data })),
     onLogOut: () => dispatch(logOut()),
   };
-
   const mapProps = {
     ...props,
     ...mapStates,
     ...mapDispatch,
   };
-
   return <LoginScreen {...mapProps} />;
 };
 
