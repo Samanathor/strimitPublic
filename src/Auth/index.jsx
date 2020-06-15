@@ -3,9 +3,10 @@ import Logo from "../common/assets/logo_strimit.png";
 import Login from "./Login/LoginContainer";
 import Register from "./Register/RegisterContainer";
 import Forget from "./Forget/ForgetContainer";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
 
 const Auth = () => {
+  let match = useRouteMatch()
   return (
     <div className="md:flex md:flex-row">
       <div className="hidden md:block md:w-1/2 bg-purple-900 min-h-screen pt-20">
@@ -18,13 +19,13 @@ const Auth = () => {
       </div>
       <div className="md:w-1/2">
         <Switch>
-          <Route path="/login">
+          <Route path={`${match.url}/login`}>
             <Login />
           </Route>
-          <Route path="/registrar">
+          <Route path={`${match.url}/registrar`}>
             <Register />
           </Route>
-          <Route path="/olvide-contrasena">
+          <Route path={`${match.url}/olvide-contrasena`}>
             <Forget />
           </Route>
         </Switch>

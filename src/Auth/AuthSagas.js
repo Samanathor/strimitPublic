@@ -34,7 +34,6 @@ export function forgetPasswordSaga(api, { payload }) {
 }
 
 export function* logOutSaga(api) {
-  console.log("log out");
   yield put(AuthActions.modifyLogOut({}));
 }
 

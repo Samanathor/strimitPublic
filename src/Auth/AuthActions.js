@@ -9,6 +9,7 @@ const { Types, Creators } = createActions(
     logOut: [""],
     modifyLogOut: [""],
     forgetPassword: ["payload"],
+    reloadUser: [""],
   },
   { prefix: "App/Auth/" }
 );

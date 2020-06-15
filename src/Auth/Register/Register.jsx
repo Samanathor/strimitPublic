@@ -37,7 +37,7 @@ const Register = ({ onSubmit }) => {
       <Button text="Iniciar sesión con Google" color="google" icon={faGoogle} />
       <p className="text-gray-600 my-2 text-center">¿Ya tienes cuenta?</p>
       <div className="text-center">
-        <Link to="/login" className="text-pink-500">
+        <Link to="login" className="text-pink-500">
           Inicia sesión
         </Link>
       </div>
