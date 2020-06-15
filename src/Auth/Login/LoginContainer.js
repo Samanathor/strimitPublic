@@ -24,7 +24,7 @@ const Login = (props) => {
   //   ToJS es inmutable asi hace que no se dañe
 
   const mapDispatch = {
-    onFacebookLogin: (values) => dispatch(facebookLogin(values)),
+    onFacebookLogin: (values) => console.log(values),
     onLoginForm: (values) => dispatch(loginForm(values)),
     onGoogleLogin: (values) => dispatch(googleLogin(values)),
     onGoogleFail: (response) => console.log(response),
