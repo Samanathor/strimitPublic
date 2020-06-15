@@ -3,38 +3,22 @@ import { all, put, takeLatest } from "redux-saga/effects";
 
 import { AuthActions, AuthTypes } from "./AuthActions";
 
-export function* facebookLoginSaga(api) {
+export function* facebookLoginSaga(api, { payload }) {
   console.log("Facebook Login Saga Ejecutada - Provider Updatedd");
-  yield put(
-    AuthActions.logIn({
-      name: "loginFacebook",
-      email: "login@facebook.com",
-      loggedIn: true,
-    })
-  );
+  const response = api.facebookLogin(payload);
+  // yield put(AuthActions.saveLoginInfo({ provider: "facebook" }));
 }
 
-export function* googleLoginSaga(api) {
-  console.log("Google Login Saga Ejecutada - Provider Updatedd");
-  yield put(
-    AuthActions.logIn({
-      name: "loginGoogle",
-      email: "login@google.com",
-      loggedIn: true,
-    })
-  );
+export function* googleLoginSaga(api, { payload }) {
+  console.log("Facebook Login Saga Ejecutada - Provider Updatedd");
+  const response = api.facebookLogin(payload);
+  // yield put(AuthActions.saveLoginInfo({ provider: "facebook" }));
 }
 
 export function* loginSaga(api, { payload }) {
   console.log("login normal");
+  console.log(payload);
   //   const response = yield api.sendLogin({ payload });
-  yield put(
-    AuthActions.logIn({
-      name: "loginNormal",
-      email: "login@normal.com",
-      loggedIn: true,
-    })
-  );
 }
 
 export function forgetPasswordSaga(api, { payload }) {
