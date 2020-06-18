@@ -2,6 +2,7 @@ import { createActions } from "reduxsauce";
 
 const { Types, Creators } = createActions(
   {
+    googleLogin: ["payload"],
     facebookLogin: ["payload"],
     loginForm: ["payload"],
     resetState: [""],
