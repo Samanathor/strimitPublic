@@ -18,7 +18,7 @@ const Login = (props) => {
   const mapDispatch = {
     onFacebookLogin: (values) => dispatch(facebookLogin(values)),
     onLoginForm: (values) => dispatch(loginForm(values)),
-    onGoogleLogin: (values) => dispatch(googleLogin(values)),
+    onGoogleLogin: (values) => console.log(values),
     onGoogleFail: (response) => console.log(response),
     onSubmitLogin: (data) => dispatch(loginForm({ data })),
     onLogOut: () => dispatch(logOut()),
