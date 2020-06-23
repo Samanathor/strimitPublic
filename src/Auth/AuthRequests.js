@@ -1,6 +1,7 @@
 const AuthRequests = (api) => {
   const facebookLogin = (payload) => api.post("/facebook-signup", payload);
-  return { facebookLogin };
+  const googleLogin = (payload) => api.post("/google-login", payload);
+  return { facebookLogin, googleLogin };
 };
 
 export { AuthRequests };

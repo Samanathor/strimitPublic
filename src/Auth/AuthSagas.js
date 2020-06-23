@@ -4,15 +4,13 @@ import { all, put, takeLatest } from "redux-saga/effects";
 import { AuthActions, AuthTypes } from "./AuthActions";
 
 export function* facebookLoginSaga(api, { payload }) {
-  console.log("Facebook Login Saga Ejecutada - Provider Updatedd");
-  // ! Cuidado con el yield para las promesas
   const response = yield api.facebookLogin(payload);
   let userForm = {
-    name: response.data.data.user.name,
-    email: response.data.data.user.email,
-    picture: response.data.data.user.picture,
+    name: response?.data?.data?.user?.name,
+    email: response?.data?.data?.user?.email,
+    picture: response?.data?.data?.user?.picture,
     loggedIn: true,
-    token: response.data.data.token,
+    token: response?.data?.data?.token,
   };
   yield put(AuthActions.saveLoginInfo(userForm));
 }
