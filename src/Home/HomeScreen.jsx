@@ -18,6 +18,8 @@ const HomeScreen = (props) => {
           <Link to="/auth/login">Login</Link>
         </>
       )}
+      <br />
+      <Link to="/colecciones">Ver Colecciones de videos</Link>
     </div>
   );
 };

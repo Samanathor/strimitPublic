@@ -95,9 +95,9 @@ const Register = (props) => {
         />
       </form>
       <div className="flex items-center my-6">
-        <div class="border flex-auto h-0" />
-        <div class="border-2 rounded-full p-1 h-0 mx-6" />
-        <div class="border flex-auto h-0" />
+        <div className="border flex-auto h-0" />
+        <div className="border-2 rounded-full p-1 h-0 mx-6" />
+        <div className="border flex-auto h-0" />
       </div>
       <FacebookLogin
         appId="380890929552372"

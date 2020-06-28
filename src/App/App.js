@@ -1,16 +1,12 @@
 import React from "react";
 import "./main.generated.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Auth from "../Auth/index";
 import { ConnectedRouter } from "connected-react-router";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import Home from "../Home/HomeContainer";
 import { AuthActions } from "../Auth/AuthActions";
+import Collections from "../Collections/CollectionContainer";
 
 // store
 import initStore, { history } from "Config/store";
@@ -27,12 +23,9 @@ function App() {
         <ConnectedRouter history={history}>
           <Router>
             <Switch>
-              <Route path="/auth">
-                <Auth />
-              </Route>
-              <Route path="/">
-                <Home />
-              </Route>
+              <Route path="/auth" component={Auth} />
+              <Route path="/colecciones" component={Collections} />
+              <Route exact path="/" component={Home} />
             </Switch>
           </Router>
         </ConnectedRouter>
