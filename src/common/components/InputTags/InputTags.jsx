@@ -2,6 +2,7 @@ import React from "react";
 import { WithContext as ReactTags } from "react-tag-input";
 import { useState } from "react";
 import "./InputTagStyles.css";
+import { useEffect } from "react";
 
 const KeyCodes = {
   comma: 188,
@@ -10,15 +11,19 @@ const KeyCodes = {
 
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
-const InputTags = ({ tags, suggestions }) => {
+const InputTags = ({ tags, suggestions, setFormTags }) => {
   const [stateTags, setTags] = useState(tags);
   const [stateSuggestions, setSuggestions] = useState(suggestions);
+  useEffect(() => {
+    setFormTags(stateTags);
+  }, [stateTags]);
   const handleDelete = (i) => {
     setTags(stateTags.filter((tag, index) => index !== i));
   };
   const handleAddition = (tag) => {
     if (stateTags?.length < 10) {
-      return setTags([...stateTags, tag]);
+      setTags([...stateTags, tag]);
+      return;
     } else {
       return;
     }
@@ -32,6 +37,7 @@ const InputTags = ({ tags, suggestions }) => {
 
   return (
     <ReactTags
+      name="tags"
       placeholder="Agregar Etiqueta"
       tags={stateTags}
       suggestions={stateSuggestions}

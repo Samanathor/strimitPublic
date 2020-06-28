@@ -25,7 +25,7 @@ const Select = ({
       onFocus={onFocus}
     >
       {placeholder && (
-        <option disabled selected>
+        <option disabled selected value="">
           {placeholder}
         </option>
       )}

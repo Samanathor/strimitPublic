@@ -1,8 +1,23 @@
-import React, { memo } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import CollectionGridScreen from "./CollectionGridScreen";
+import { toJS } from "../../common/hocs/to-js";
 
-const CollectionGridContainer = () => {
-  return <CollectionGridScreen />;
+const CollectionGridContainer = (props) => {
+  return <CollectionGridScreen {...props} />;
 };
 
-export default memo(CollectionGridContainer);
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = {
+  onSendUploadConnection: (values) => {
+    console.log(values);
+  },
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(toJS(CollectionGridContainer));

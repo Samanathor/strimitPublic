@@ -1,7 +1,9 @@
-import React, { memo } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import CollectionScreen from "./CollectionScreen";
 import CollectionUploadContainer from "./Upload/CollectionUploadContainer";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { toJS } from "../common/hocs/to-js";
 
 const CollectionContainer = () => {
   let match = useRouteMatch();
@@ -16,4 +18,6 @@ const CollectionContainer = () => {
   );
 };
 
-export default memo(CollectionContainer);
+const mapStateToProps = () => {};
+
+export default connect(mapStateToProps)(toJS(CollectionContainer));
