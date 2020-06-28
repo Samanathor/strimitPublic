@@ -1,7 +1,12 @@
-import React, { memo } from "react";
+import React from "react";
 import RegisterScreen from "./RegisterScreen";
 import { AuthActions } from "../AuthActions";
-import { useDispatch, useSelector } from "react-redux";
+import { toJS } from "../../common/hocs/to-js";
+import { connect } from "react-redux";
+
+const Register = (props) => {
+  return <RegisterScreen {...props} />;
+};
 
 const {
   registerForm,
@@ -9,29 +14,24 @@ const {
   setSignupLogin,
   googleLogin,
 } = AuthActions;
-const Register = (props) => {
-  const dispatch = useDispatch();
-  const mapDispatch = {
-    onFacebookLogin: (values) => dispatch(facebookLogin(values)),
-    onRegisterForm: (values) => dispatch(registerForm(values)),
-    onGoogleLogin: (values) => dispatch(googleLogin(values)),
-    onGoogleFail: () =>
-      dispatch(
-        setSignupLogin({
-          message:
-            "Error con la comunicación con Google, por favor intentalo mas tarde.",
-        })
-      ),
+
+const mapStateToProps = (state) => {
+  return {
+    loginInfo: state.auth.get("loginInfo"),
+    loginError: state.auth.get("loginError"),
+    signupError: state.auth.get("signupError"),
   };
-  const mapStates = {
-    ...useSelector((state) => state.auth.toJS()),
-  };
-  const mapProps = {
-    ...props,
-    ...mapStates,
-    ...mapDispatch,
-  };
-  return <RegisterScreen {...mapProps} />;
 };
 
-export default memo(Register);
+const mapDispatchToProps = {
+  onFacebookLogin: facebookLogin,
+  onRegisterForm: registerForm,
+  onGoogleLogin: googleLogin,
+  onGoogleFail: () =>
+    setSignupLogin({
+      message:
+        "Error con la comunicación con Google, por favor intentalo mas tarde.",
+    }),
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(toJS(Register));
