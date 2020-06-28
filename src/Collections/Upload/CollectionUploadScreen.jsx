@@ -58,7 +58,7 @@ const CollectionUploadScreen = () => {
           </div>
           <div className="mt-4 px-4">
             <label>Etiquetas</label>
-            <div className="w-full h-20 border-purple-900 rounded-lg border">
+            <div className="w-full h-20 border-purple-900 rounded-lg border p-4 ">
               <InputTags />
             </div>
           </div>
