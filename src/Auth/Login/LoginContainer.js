@@ -1,10 +1,13 @@
-import React, { memo } from "react";
-import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { AuthActions } from "../AuthActions";
 import LoginScreen from "./LoginScreen";
+import { connect } from "react-redux";
+import { toJS } from "../../common/hocs/to-js";
 
-// Aqui coloco las acciones de AuthActions
+const Login = (props) => {
+  return <LoginScreen {...props} />;
+};
+
 const {
   googleLogin,
   facebookLogin,
@@ -13,47 +16,27 @@ const {
   setErrorLogin,
   resetLoginError,
 } = AuthActions;
-// Este es el componente como tal condensado con lo que se necesita
-const Login = (props) => {
-  //   Esto es mapDispatchToProps usa el hook
-  const dispatch = useDispatch();
-  // Aqui se mapea todos los states de la login screen Hook useSelector
-  const mapStates = {
-    ...useSelector((state) => state.auth.toJS()),
+
+const mapStateToProps = (state) => {
+  return {
+    loginInfo: state.auth.get("loginInfo"),
+    loginError: state.auth.get("loginError"),
+    signupError: state.auth.get("signupError"),
   };
-  //   ToJS es inmutable asi hace que no se dañe
-  const mapDispatch = {
-    onFacebookLogin: (values) => dispatch(facebookLogin(values)),
-    onLoginForm: (values) => dispatch(loginForm(values)),
-    onGoogleLogin: (values) => dispatch(googleLogin(values)),
-    onGoogleFail: () =>
-      dispatch(
-        setErrorLogin({
-          message:
-            "Error con la comunicación con Google, por favor intentalo mas tarde.",
-        })
-      ),
-    onSubmitLogin: (data) => dispatch(loginForm({ data })),
-    onLogOut: () => dispatch(logOut()),
-    resetLoginError: () => dispatch(resetLoginError()),
-  };
-  const mapProps = {
-    ...props,
-    ...mapStates,
-    ...mapDispatch,
-  };
-  return <LoginScreen {...mapProps} />;
 };
 
-// Es para setear el tipo de props que se esperan
-Login.propTypes = {
-  match: PropTypes.object,
+const mapDispatchToProps = {
+  onFacebookLogin: facebookLogin,
+  onLoginForm: loginForm,
+  onGoogleLogin: googleLogin,
+  onGoogleFail: () =>
+    setErrorLogin({
+      message:
+        "Error con la comunicación con Google, por favor intentalo mas tarde.",
+    }),
+  onSubmitLogin: (data) => loginForm({ data }),
+  onLogOut: logOut,
+  resetLoginError,
 };
 
-// Estos son los default de las props
-Login.defaultProps = {
-  match: {},
-};
-
-// memo es un helper de react que sirve para evitar rerenders inutiles
-export default memo(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(toJS(Login));

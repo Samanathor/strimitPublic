@@ -9,7 +9,7 @@ import { AuthActions } from "../Auth/AuthActions";
 import Collections from "../Collections/CollectionContainer";
 
 // store
-import initStore, { history } from "Config/store";
+import initStore, { history } from "config/store";
 export const store = initStore();
 
 //Auth
