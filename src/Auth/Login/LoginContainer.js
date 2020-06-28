@@ -5,7 +5,14 @@ import { AuthActions } from "../AuthActions";
 import LoginScreen from "./LoginScreen";
 
 // Aqui coloco las acciones de AuthActions
-const { googleLogin, facebookLogin, loginForm, logOut } = AuthActions;
+const {
+  googleLogin,
+  facebookLogin,
+  loginForm,
+  logOut,
+  setErrorLogin,
+  resetLoginError,
+} = AuthActions;
 // Este es el componente como tal condensado con lo que se necesita
 const Login = (props) => {
   //   Esto es mapDispatchToProps usa el hook
@@ -18,10 +25,17 @@ const Login = (props) => {
   const mapDispatch = {
     onFacebookLogin: (values) => dispatch(facebookLogin(values)),
     onLoginForm: (values) => dispatch(loginForm(values)),
-    onGoogleLogin: (values) => console.log(values),
-    onGoogleFail: (response) => console.log(response),
+    onGoogleLogin: (values) => dispatch(googleLogin(values)),
+    onGoogleFail: () =>
+      dispatch(
+        setErrorLogin({
+          message:
+            "Error con la comunicación con Google, por favor intentalo mas tarde.",
+        })
+      ),
     onSubmitLogin: (data) => dispatch(loginForm({ data })),
     onLogOut: () => dispatch(logOut()),
+    resetLoginError: () => dispatch(resetLoginError()),
   };
   const mapProps = {
     ...props,

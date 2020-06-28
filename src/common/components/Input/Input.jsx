@@ -10,6 +10,7 @@ const Input = ({
   propRef,
   name,
   border,
+  onFocus,
 }) => {
   return (
     <input
@@ -21,6 +22,7 @@ const Input = ({
       onChange={onChange}
       value={value}
       onBlur={onBlur}
+      onFocus={onFocus}
     />
   );
 };

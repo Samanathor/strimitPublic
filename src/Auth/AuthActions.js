@@ -11,6 +11,8 @@ const { Types, Creators } = createActions(
     modifyLogOut: [""],
     forgetPassword: ["payload"],
     reloadUser: [""],
+    setErrorLogin: ["payload"],
+    resetLoginError: [""],
   },
   { prefix: "App/Auth/" }
 );

@@ -7,19 +7,30 @@ import styles from "../Authstyles";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import FacebookLogin from "react-facebook-login";
-import GoogleLogin from "react-google-login"
+import GoogleLogin from "react-google-login";
 const LoginScreen = (props) => {
-  const { onSubmitLogin, onFacebookLogin, onGoogleLogin, onGoogleFail } = props;
+  const {
+    onSubmitLogin,
+    onFacebookLogin,
+    onGoogleLogin,
+    onGoogleFail,
+    loginError,
+    resetLoginError,
+  } = props;
   const { register, handleSubmit, errors } = useForm();
   return (
     <div className="w-1/2 mx-auto mt-20 pt-5">
       <form onSubmit={handleSubmit(onSubmitLogin)}>
         <h3 className={styles.title}>Iniciar Sesión</h3>
+        {loginError.state && (
+          <p className="text-red-800 text-center">{loginError.message}</p>
+        )}
         <Input
           propRef={register({
             required: true,
             pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
           })}
+          onFocus={resetLoginError}
           name="email"
           type="email"
           placeholder="Ingresa tu correo electrónico"
@@ -35,8 +46,8 @@ const LoginScreen = (props) => {
           name="password"
           propRef={register({
             required: true,
-            maxLength: 10,
           })}
+          onFocus={resetLoginError}
           type="password"
           placeholder="Ingresa tu contraseña"
         />
@@ -68,19 +79,19 @@ const LoginScreen = (props) => {
         cssClass="text-center py-4 px-6 rounded-full w-full cursor-pointer bg-blue-700 hover:bg-blue-800 text-white mb-4"
       />
 
-    <GoogleLogin
-        clientId="512367997945-djogbjcdq7q92orcj333ps9185hfvcq5.apps.googleusercontent.com" 
+      <GoogleLogin
+        clientId="512367997945-djogbjcdq7q92orcj333ps9185hfvcq5.apps.googleusercontent.com"
         buttonText="LOGIN WITH GOOGLE"
         onSuccess={onGoogleLogin}
         onFailure={onGoogleFail}
         disabledStyle={true}
-        render={renderProps => (
+        render={(renderProps) => (
           <Button
-        btnType="button"
-        text="Iniciar sesión con Google"
-        color="google"
-        icon={faGoogle}
-        onClick={renderProps.onClick}
+            btnType="button"
+            text="Iniciar sesión con Google"
+            color="google"
+            icon={faGoogle}
+            onClick={renderProps.onClick}
           />
         )}
       />

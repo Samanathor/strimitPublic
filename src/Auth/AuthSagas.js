@@ -5,26 +5,66 @@ import { AuthActions, AuthTypes } from "./AuthActions";
 
 export function* facebookLoginSaga(api, { payload }) {
   const response = yield api.facebookLogin(payload);
-  let userForm = {
-    name: response?.data?.data?.user?.name,
-    email: response?.data?.data?.user?.email,
-    picture: response?.data?.data?.user?.picture,
-    loggedIn: true,
-    token: response?.data?.data?.token,
-  };
-  yield put(AuthActions.saveLoginInfo(userForm));
+  if (response.data.notification.success === "true") {
+    let userForm = {
+      name: response?.data?.data?.user?.name,
+      email: response?.data?.data?.user?.email,
+      picture: response?.data?.data?.user?.picture,
+      loggedIn: true,
+      token: response?.data?.data?.token,
+    };
+    yield put(AuthActions.saveLoginInfo(userForm));
+  }
+  yield put(
+    AuthActions.setErrorLogin({
+      message:
+        "Error en la comunicación con Facebook, por favor intentalo mas tarde.",
+    })
+  );
 }
 
 export function* googleLoginSaga(api, { payload }) {
-  console.log("Facebook Login Saga Ejecutada - Provider Updatedd");
-  const response = api.facebookLogin(payload);
-  // yield put(AuthActions.saveLoginInfo({ provider: "facebook" }));
+  const dataExport = {
+    googleToken: payload.tokenId,
+    googleId: payload.googleId,
+  };
+  const response = yield api.googleLogin(dataExport);
+  if (response.data.notification.success === "true") {
+    let userForm = {
+      name: response?.data?.data?.user?.name,
+      email: response?.data?.data?.user?.email,
+      picture: response?.data?.data?.user?.picture,
+      loggedIn: true,
+      token: response?.data?.data?.token,
+    };
+    yield put(AuthActions.saveLoginInfo(userForm));
+  }
+  yield put(
+    AuthActions.setErrorLogin({
+      message:
+        "Error en la comunicación con Google, por favor intentalo mas tarde.",
+    })
+  );
 }
 
 export function* loginSaga(api, { payload }) {
-  console.log("login normal");
-  console.log(payload);
-  //   const response = yield api.sendLogin({ payload });
+  const response = yield api.normalLogin(payload.data);
+  if (response.data.notification.success === "true") {
+    let userForm = {
+      name: response?.data?.data?.user?.name,
+      email: response?.data?.data?.user?.email,
+      picture: response?.data?.data?.user?.picture,
+      loggedIn: true,
+      token: response?.data?.data?.token,
+    };
+    yield put(AuthActions.saveLoginInfo(userForm));
+    return;
+  }
+  yield put(
+    AuthActions.setErrorLogin({
+      message: "Verifica los datos de inicio de sesión",
+    })
+  );
 }
 
 export function forgetPasswordSaga(api, { payload }) {
@@ -36,7 +76,7 @@ export function* logOutSaga(api) {
 }
 
 function* ActionWatcher(api) {
-  // yield takeLatest(AuthTypes.GOOGLE_LOGIN, googleLoginSaga, api);
+  yield takeLatest(AuthTypes.GOOGLE_LOGIN, googleLoginSaga, api);
   yield takeLatest(AuthTypes.FACEBOOK_LOGIN, facebookLoginSaga, api);
   yield takeLatest(AuthTypes.LOGIN_FORM, loginSaga, api);
   yield takeLatest(AuthTypes.LOG_OUT, logOutSaga, api);

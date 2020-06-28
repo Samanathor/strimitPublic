@@ -11,6 +11,10 @@ export const INITIAL_STATE = Map({
     picture: null,
     loggedIn: false,
   },
+  loginError: {
+    state: false,
+    message: "",
+  },
 });
 
 const resetState = () => INITIAL_STATE;
@@ -21,7 +25,10 @@ const saveLoginInfo = (state, { payload }) => {
   localStorage.setItem("name", payload.name);
   localStorage.setItem("picture", payload.picture);
   return state.merge(
-    Map({ loginInfo: { ...state.get("loginInfo"), ...payload } })
+    Map({
+      loginInfo: { ...state.get("loginInfo"), ...payload },
+      loginError: { state: false, message: "" },
+    })
   );
 };
 
@@ -31,7 +38,10 @@ const logOut = (state) => {
   localStorage.removeItem("name");
   localStorage.removeItem("picture");
   return state.merge(
-    Map({ loginInfo: { email: "", name: "", picture: null, loggedIn: false } })
+    Map({
+      loginInfo: { email: "", name: "", picture: null, loggedIn: false },
+      loginError: { state: false, message: "" },
+    })
   );
 };
 
@@ -45,10 +55,21 @@ const reloadUser = (state) => {
           picture: localStorage.getItem("picture"),
           loggedIn: true,
         },
+        loginError: { state: false, message: "" },
       })
     );
   }
   return state;
+};
+
+const setErrorLogin = (state, { payload }) => {
+  return state.merge(
+    Map({ loginError: { state: true, message: payload.message } })
+  );
+};
+
+const resetLoginError = (state, { payload }) => {
+  return state.merge(Map({ loginError: { state: false, message: "" } }));
 };
 
 /* ------------- Hookup Reducers To Types ------------- */
@@ -57,4 +78,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SAVE_LOGIN_INFO]: saveLoginInfo,
   [Types.MODIFY_LOG_OUT]: logOut,
   [Types.RELOAD_USER]: reloadUser,
+  [Types.SET_ERROR_LOGIN]: setErrorLogin,
+  [Types.RESET_LOGIN_ERROR]: resetLoginError,
 });
