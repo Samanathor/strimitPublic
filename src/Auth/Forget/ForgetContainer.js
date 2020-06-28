@@ -3,11 +3,11 @@ import ForgetScreen from "./ForgetScreen";
 import { AuthActions } from "../AuthActions";
 import { connect } from "react-redux";
 
-const { forgetPassword } = AuthActions;
-
 const Forget = (props) => {
   return <ForgetScreen {...props} />;
 };
+
+const { forgetPassword } = AuthActions;
 
 const mapDispatchToProps = {
   onFacebookLogin: () => console.log("onFacebookLogin"),
