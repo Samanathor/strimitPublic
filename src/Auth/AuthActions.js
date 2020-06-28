@@ -13,6 +13,9 @@ const { Types, Creators } = createActions(
     reloadUser: [""],
     setErrorLogin: ["payload"],
     resetLoginError: [""],
+    registerForm: ["payload"],
+    setSignupError: ["payload"],
+    resetSignupError: ["payload"],
   },
   { prefix: "App/Auth/" }
 );

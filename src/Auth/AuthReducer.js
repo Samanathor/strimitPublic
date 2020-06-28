@@ -15,6 +15,10 @@ export const INITIAL_STATE = Map({
     state: false,
     message: "",
   },
+  signupError: {
+    state: false,
+    message: "",
+  },
 });
 
 const resetState = () => INITIAL_STATE;
@@ -28,6 +32,7 @@ const saveLoginInfo = (state, { payload }) => {
     Map({
       loginInfo: { ...state.get("loginInfo"), ...payload },
       loginError: { state: false, message: "" },
+      signupError: { state: false, message: "" },
     })
   );
 };
@@ -41,6 +46,7 @@ const logOut = (state) => {
     Map({
       loginInfo: { email: "", name: "", picture: null, loggedIn: false },
       loginError: { state: false, message: "" },
+      signupError: { state: false, message: "" },
     })
   );
 };
@@ -56,6 +62,7 @@ const reloadUser = (state) => {
           loggedIn: true,
         },
         loginError: { state: false, message: "" },
+        signupError: { state: false, message: "" },
       })
     );
   }
@@ -72,6 +79,16 @@ const resetLoginError = (state, { payload }) => {
   return state.merge(Map({ loginError: { state: false, message: "" } }));
 };
 
+const setSignupError = (state, { payload }) => {
+  return state.merge(
+    Map({ signupError: { state: true, message: payload.message } })
+  );
+};
+
+const resetSignupError = (state, { payload }) => {
+  return state.merge(Map({ signupError: { state: false, message: "" } }));
+};
+
 /* ------------- Hookup Reducers To Types ------------- */
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.RESET_STATE]: resetState,
@@ -80,4 +97,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.RELOAD_USER]: reloadUser,
   [Types.SET_ERROR_LOGIN]: setErrorLogin,
   [Types.RESET_LOGIN_ERROR]: resetLoginError,
+  [Types.SET_SIGNUP_ERROR]: setSignupError,
+  [Types.RESET_SIGNUP_ERROR]: resetSignupError,
 });
