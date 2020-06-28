@@ -1,24 +1,19 @@
-import React, { memo } from "react";
+import React from "react";
 import ForgetScreen from "./ForgetScreen";
 import { AuthActions } from "../AuthActions";
-import { useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
 const { forgetPassword } = AuthActions;
-const Forget = () => {
-  const dispatch = useDispatch();
 
-  const mapDispatch = {
-    onFacebookLogin: () => console.log(),
-    onGoogleLogin: () => console.log(),
-    onGoogleFail: () => console.log(),
-    onForgetSubmit: (payload) => dispatch(forgetPassword(payload)),
-  };
-
-  const mapProps = {
-    ...mapDispatch,
-  };
-
-  return <ForgetScreen {...mapProps} />;
+const Forget = (props) => {
+  return <ForgetScreen {...props} />;
 };
 
-export default memo(Forget);
+const mapDispatchToProps = {
+  onFacebookLogin: () => console.log("onFacebookLogin"),
+  onGoogleLogin: () => console.log("onGoogleLogin"),
+  onGoogleFail: () => console.log("onGoogleFail"),
+  onForgetSubmit: forgetPassword,
+};
+
+export default connect(null, mapDispatchToProps)(Forget);
