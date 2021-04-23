@@ -2,19 +2,22 @@ import React from "react";
 import { connect } from "react-redux";
 import CollectionUploadScreen from "./CollectionUploadScreen";
 import { toJS } from "common/hocs/to-js";
+import { CollectionActions } from "../CollectionActions";
+
+const { sendCollectionCreate } = CollectionActions;
 
 const CollectionUploadContainer = (props) => {
   return <CollectionUploadScreen {...props} />;
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    collections: {},
+  };
 };
 
 const mapDispatchToProps = {
-  onSendUploadConnection: (values) => {
-    console.log(values);
-  },
+  onSendUploadConnection: sendCollectionCreate,
 };
 export default connect(
   mapStateToProps,

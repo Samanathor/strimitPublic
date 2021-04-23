@@ -1,13 +1,11 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { useDropzone } from "react-dropzone";
 import drag from "../../assets/drag_drop.jpg";
 import dragDropStyles from "./DragDropStyles";
-import { useForm } from "react-hook-form";
 
 const DragDrop = (props) => {
-  const { setValue } = useForm();
   const { setDragFile, border, name } = props;
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop: (files) => {
       setDragFile(files);
     },

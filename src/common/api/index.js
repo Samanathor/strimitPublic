@@ -1,5 +1,6 @@
 import { create } from "apisauce";
 import { AuthRequests } from "Auth/AuthRequests";
+import { CollectionRequests } from "Collections/CollectionRequest";
 
 const createApi = (baseURL = process.env.REACT_APP_API_URL) => {
   // timeout: 2000
@@ -37,6 +38,7 @@ const createApi = (baseURL = process.env.REACT_APP_API_URL) => {
   return {
     authentication,
     ...AuthRequests(api),
+    ...CollectionRequests(api),
   };
 };
 

@@ -25,12 +25,16 @@ const Select = ({
       onFocus={onFocus}
     >
       {placeholder && (
-        <option disabled selected value="">
+        <option disabled defaultValue value="">
           {placeholder}
         </option>
       )}
       {options?.map((option) => {
-        return <option value={option.value}>{option.name}</option>;
+        return (
+          <option key={option.value} value={option.value}>
+            {option.name}
+          </option>
+        );
       })}
     </select>
   );

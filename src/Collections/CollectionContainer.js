@@ -18,6 +18,8 @@ const CollectionContainer = () => {
   );
 };
 
-const mapStateToProps = () => {};
+const mapStateToProps = (state) => {
+  return {};
+};
 
 export default connect(mapStateToProps)(toJS(CollectionContainer));
